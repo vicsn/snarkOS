@@ -45,8 +45,8 @@ version = "=0.1.24"
 default-features = false
 
 [workspace.dependencies.snarkvm]
-git = "https://github.com/AleoNet/snarkVM.git"
-rev = "393b8fb"
+git = "https://github.com/vicsn/snarkVM.git"
+rev = "c4f75232a"
 features = [ "circuit", "console", "rocks" ]
 
 [[bin]]

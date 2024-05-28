@@ -688,20 +688,6 @@ fn load_or_compute_genesis<N: Network>(
             preimage.extend(snarkvm::parameters::testnet::FeePublicVerifier::METADATA.as_bytes());
             preimage.extend(snarkvm::parameters::testnet::InclusionVerifier::METADATA.as_bytes());
         }
-        snarkvm::console::network::CanaryV0::ID => {
-            preimage.extend(snarkvm::parameters::canary::BondValidatorVerifier::METADATA.as_bytes());
-            preimage.extend(snarkvm::parameters::canary::BondPublicVerifier::METADATA.as_bytes());
-            preimage.extend(snarkvm::parameters::canary::UnbondPublicVerifier::METADATA.as_bytes());
-            preimage.extend(snarkvm::parameters::canary::ClaimUnbondPublicVerifier::METADATA.as_bytes());
-            preimage.extend(snarkvm::parameters::canary::SetValidatorStateVerifier::METADATA.as_bytes());
-            preimage.extend(snarkvm::parameters::canary::TransferPrivateVerifier::METADATA.as_bytes());
-            preimage.extend(snarkvm::parameters::canary::TransferPublicVerifier::METADATA.as_bytes());
-            preimage.extend(snarkvm::parameters::canary::TransferPrivateToPublicVerifier::METADATA.as_bytes());
-            preimage.extend(snarkvm::parameters::canary::TransferPublicToPrivateVerifier::METADATA.as_bytes());
-            preimage.extend(snarkvm::parameters::canary::FeePrivateVerifier::METADATA.as_bytes());
-            preimage.extend(snarkvm::parameters::canary::FeePublicVerifier::METADATA.as_bytes());
-            preimage.extend(snarkvm::parameters::canary::InclusionVerifier::METADATA.as_bytes());
-        }
         _ => {
             // Unrecognized Network ID
             bail!("Unrecognized Network ID: {}", N::ID);
