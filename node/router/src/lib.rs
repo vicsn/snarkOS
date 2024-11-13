@@ -47,7 +47,7 @@ use snarkvm::prelude::{Address, Network, PrivateKey, ViewKey};
 
 use anyhow::{Result, bail};
 use parking_lot::{Mutex, RwLock};
-#[cfg(not(any(test, feature = "test")))]
+#[cfg(not(any(test)))]
 use std::net::IpAddr;
 use std::{
     collections::{HashMap, HashSet, hash_map::Entry},
@@ -107,14 +107,14 @@ pub struct InnerRouter<N: Network> {
 
 impl<N: Network> Router<N> {
     /// The minimum permitted interval between connection attempts for an IP; anything shorter is considered malicious.
-    #[cfg(not(any(test, feature = "test")))]
+    #[cfg(not(any(test)))]
     const CONNECTION_ATTEMPTS_SINCE_SECS: i64 = 10;
     /// The maximum number of candidate peers permitted to be stored in the node.
     const MAXIMUM_CANDIDATE_PEERS: usize = 10_000;
     /// The maximum number of connection failures permitted by an inbound connecting peer.
     const MAXIMUM_CONNECTION_FAILURES: usize = 5;
     /// The maximum amount of connection attempts withing a 10 second threshold
-    #[cfg(not(any(test, feature = "test")))]
+    #[cfg(not(any(test)))]
     const MAX_CONNECTION_ATTEMPTS: usize = 10;
     /// The duration in seconds after which a connected peer is considered inactive or
     /// disconnected if no message has been received in the meantime.
@@ -450,13 +450,13 @@ impl<N: Network> Router<N> {
     }
 
     /// Check whether the given IP address is currently banned.
-    #[cfg(not(any(test, feature = "test")))]
+    #[cfg(not(any(test)))]
     fn is_ip_banned(&self, ip: IpAddr) -> bool {
         self.tcp.banned_peers().is_ip_banned(&ip)
     }
 
     /// Insert or update a banned IP.
-    #[cfg(not(any(test, feature = "test")))]
+    #[cfg(not(any(test)))]
     fn update_ip_ban(&self, ip: IpAddr) {
         self.tcp.banned_peers().update_ip_ban(ip);
     }
